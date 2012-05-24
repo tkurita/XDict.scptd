@@ -1,0 +1,2123 @@
+{\rtf1\ansi\ansicpg932\cocoartf949\cocoasubrtf540
+{\fonttbl\f0\fnil\fcharset128 Osaka;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red0\green0\blue255;\red64\green128\blue0;
+\red76\green78\blue78;}
+\deftab480
+\pard\pardeftab480\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf2 property
+\f1 \cf0  
+\f0 \cf3 name
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 "XDict"
+\f1 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 version
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 "1.5"
+\f1 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf4 XList
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 missing value
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 __load__\cf0 (\cf4 loader\cf0 )
+\f1 \
+	
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf4 loader
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 XList
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 load\cf0 ("XList")
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 __load__
+\f1 \cf0 \
+\
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf4 _
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf4 __load__\cf0 (\cf3 make loader\cf0 )
+\f1 \
+\
+
+\f0 (*\cf5 !@references\
+XList || help:openbook='XList Help'\
+XText || help:openbook='XText Help'\
+\cf0 *)
+\f1 \
+\
+
+\f0 (*\cf5 !@title XDict Reference \
+* Version : 1.5\
+* Author : Tetsuro KURITA ((<tkurita@mac.com>))\
+\
+<!-- begin locale ja -->\
+XDict \'82\'cd\'98\'41\'91\'7a\'94\'7a\'97\'f1\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+XDict is an associative list type data collection. \
+<!-- end locale -->\
+\cf0 *)
+\f1 \
+\
+
+\f0 (*\cf5 !@group Constructer Methods \cf0 *)
+\f1 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+\'98\'41\'91\'7a\'94\'7a\'97\'f1\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\'90\'b6\'90\'ac\'82\'b3\'82\'ea\'82\'bd\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'c9\'82\'cd\'89\'bd\'82\'e0\'92\'6c\'82\'cd\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'dc\'82\'b9\'82\'f1\'81\'42\
+<!-- begin locale en -->\
+Make an empty XDict instance\
+<!-- end locale -->\
+@result script object : \
+<!-- begin locale ja -->\
+\'98\'41\'91\'7a\'94\'7a\'97\'f1\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+<!-- begin locale en -->\
+an instance of XDict\
+<!-- end locale -->\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 make_with_lists\cf0 (\{\},
+\f1  
+\f0 \{\})
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'82\'bb\'82\'ea\'82\'c9\'91\'ce\'89\'9e\'82\'b5\'82\'bd\'92\'6c\'82\'cc\'83\'79\'83\'41(\'83\'8a\'83\'58\'83\'67\'81\'6a\'82\'cc\'83\'8a\'83\'58\'83\'67\'82\'a9\'82\'e7 XDict \'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Make a new XDict instance with a list of pair lists of a key and a value.\
+<!-- end locale -->\
+@param pairs (list) :<!-- begin locale ja --> \'83\'4c\'81\'5b\'92\'6c\'82\'c6\'92\'6c\'82\'cc\'83\'79\'83\'41\'82\'cc\'83\'8a\'83\'58\'83\'67\
+<!-- begin locale en -->a list of pairs of a key and a value<!-- end locale -->\
+\{\{key1, value1\}, \{key2,value2\},...\}\
+@result script object : a XDict instance\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 make_with_pairs\cf0 (\cf4 pairs\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 key_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0  
+\f0 \cf4 XList
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 value_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0  
+\f0 \cf4 XList
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 pair_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 XList\cf0 's
+\f1  
+\f0 \cf4 make_with\cf0 (\cf4 pairs\cf0 )
+\f1 \
+	\
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf4 PairsToLists
+\f1 \cf0 \
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 do\cf0 (\cf4 a_pair\cf0 )
+\f1 \
+			
+\f0 \cf4 key_list\cf0 's
+\f1  
+\f0 \cf4 push\cf0 (\cf3 item
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf4 a_pair\cf0 )
+\f1 \
+			
+\f0 \cf4 value_list\cf0 's
+\f1  
+\f0 \cf4 push\cf0 (\cf3 item
+\f1 \cf0  
+\f0 2
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf4 a_pair\cf0 )
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 do
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+	
+\f0 \cf4 pair_list\cf0 's
+\f1  
+\f0 \cf4 each\cf0 (\cf4 PairsToLists\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 make_with_xlists\cf0 (\cf4 key_list\cf0 ,
+\f1  
+\f0 \cf4 value_list\cf0 )
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 make_with_pairs
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+\'83\'4c\'81\'5b\'92\'6c\'82\'cc\'83\'8a\'83\'58\'83\'67\'82\'c6\'82\'bb\'82\'ea\'82\'c9\'91\'ce\'89\'9e\'82\'b7\'82\'e9\'92\'6c\'82\'cc\'83\'8a\'83\'58\'83\'67\'82\'a9\'82\'e7\'81\'41XDict\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Make a XDict instance with a list of keys and a list of values.\
+<!-- end locale -->\
+\
+@param key_list (list) :<!-- begin locale ja --> \'83\'4c\'81\'5b\'92\'6c\'82\'cc\'83\'8a\'83\'58\'83\'67\
+<!-- begin locale en -->a list of keys<!-- end locale -->\
+@param value_list (list) : <!-- begin locale ja -->\'83\'4c\'81\'5b\'92\'6c\'82\'c9\'91\'ce\'89\'9e\'82\'b5\'82\'c4\'90\'dd\'92\'e8\'82\'b7\'82\'e9\'92\'6c\'82\'cc\'83\'8a\'83\'58\'83\'67\
+<!-- begin locale en -->a list of values corresponding keys.<!-- end locale -->\
+@result script object : a XDict instance\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 make_with_lists\cf0 (\cf4 key_list\cf0 ,
+\f1  
+\f0 \cf4 value_list\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 key_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 XList\cf0 's
+\f1  
+\f0 \cf4 make_with\cf0 (\cf4 key_list\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 value_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 XList\cf0 's
+\f1  
+\f0 \cf4 make_with\cf0 (\cf4 value_list\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 make_with_xlists\cf0 (\cf4 key_list\cf0 ,
+\f1  
+\f0 \cf4 value_list\cf0 )
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 make_with_lists
+\f1 \cf0 \
+\
+
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf4 DefaultComparator
+\f1 \cf0 \
+	
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 do\cf0 (\cf4 a_value\cf0 ,
+\f1  
+\f0 \cf4 target_value\cf0 )
+\f1 \
+		
+\f0 \cf2 considering
+\f1 \cf0  
+\f0 \cf3 case
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 a_value
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf4 target_value
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 considering
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 do
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+\
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf4 _key_comparator
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf4 DefaultComparator
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf4 _value_comparator
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf4 DefaultComparator
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+\'83\'4c\'81\'5b\'92\'6c\'82\'f0\'97\'76\'91\'66\'82\'c6\'82\'b5\'82\'bd ((<XList>)) \'82\'c6\'81\'41\'82\'bb\'82\'ea\'82\'c9\'91\'ce\'89\'9e\'82\'b7\'82\'e9\'92\'6c\'82\'f0\'97\'76\'91\'66\'82\'c6\'82\'b5\'82\'bd\'82\'cc ((<XList>)) \'82\'a9\'82\'e7\'81\'41XDict \'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Make a XDict instance with a ((<XList>)) of keys and a ((<XList>)) of values.\
+<!-- end locale -->\
+@param key_list (script object) : \
+<!-- begin locale ja -->\'83\'4c\'81\'5b\'92\'6c\'82\'cc XList\
+<!-- begin locale en -->a XList of keys<!-- end locale -->\
+@param value_list (script object) : <!-- begin locale ja -->\'83\'4c\'81\'5b\'92\'6c\'82\'c9\'91\'ce\'89\'9e\'82\'b5\'82\'c4\'90\'dd\'92\'e8\'82\'b7\'82\'e9\'92\'6c\'82\'cc XList\
+<!-- begin locale en -->a XList of values corresponding keys.<!-- end locale -->\
+@result script object : a XDict instance\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 make_with_xlists\cf0 (\cf4 key_list\cf0 ,
+\f1  
+\f0 \cf4 value_list\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 a_parent
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf4 XDict
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 parent
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf4 a_parent
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf4 _keys
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf4 key_list
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf4 _values
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf4 value_list
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf4 _key_comparator
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _key_comparator
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf4 _value_comparator
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _value_comparator
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 XDict
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 make_with_xlists
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !@group Instance Methods \cf0 *)
+\f1 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 search_value\cf0 (\cf4 a_key\cf0 ,
+\f1  
+\f0 \cf4 key_list\cf0 ,
+\f1  
+\f0 \cf4 value_list\cf0 ,
+\f1  
+\f0 \cf4 comparator\cf0 )
+\f1 \
+	
+\f0 (*\cf5 \'81\'40-- when a value is a record, "is in" operator does not works.\
+	set exists_key to true\
+	try\
+		set exists_key to key_list's has_item(a_key)\
+	on error\
+		set exists_key to true\
+	end try\
+	\
+	if not exists_key then\
+		return missing value\
+	end if\
+	\cf0 *)
+\f1 \
+	\
+	
+\f0 --\cf5 set a_value to missing value
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 invalid_key_indexes
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \{\}
+\f1 \
+	
+\f0 \cf4 key_list\cf0 's
+\f1  
+\f0 \cf4 reset\cf0 ()
+\f1 \
+	
+\f0 \cf2 repeat
+\f1 \cf0  
+\f0 \cf2 while
+\f1 \cf0  
+\f0 \cf4 key_list\cf0 's
+\f1  
+\f0 \cf4 has_next\cf0 ()
+\f1 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 current_key
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 key_list\cf0 's
+\f1  
+\f0 \cf4 next\cf0 ()
+\f1 \
+		
+\f0 \cf2 try
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 current_key
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 contents
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf4 current_key
+\f1 \cf0 \
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0  
+\f0 \cf4 msg
+\f1 \cf0  
+\f0 \cf3 number
+\f1 \cf0  
+\f0 -1700
+\f1 \
+			
+\f0 (*\cf5  when current_key is script object, constants of ~ cause error \cf0 *)
+\f1 \
+			
+\f0 (*\cf5 \
+			log msg\
+			log current_key\
+			\cf0 *)
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+		
+\f0 \cf2 try
+\f1 \cf0 \
+			
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf4 comparator\cf0 's
+\f1  
+\f0 \cf4 do\cf0 (\cf4 current_key\cf0 ,
+\f1  
+\f0 \cf4 a_key\cf0 )
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 an_index
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 key_list\cf0 's
+\f1  
+\f0 \cf4 current_index\cf0 ()
+\f1 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 a_value
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 value_list\cf0 's
+\f1  
+\f0 \cf4 item_at\cf0 (\cf4 an_index\cf0 )
+\f1 \
+				
+\f0 \cf2 exit
+\f1 \cf0  
+\f0 \cf2 repeat
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0  
+\f0 \cf4 msg
+\f1 \cf0  
+\f0 \cf3 number
+\f1 \cf0  
+\f0 -43
+\f1  
+\f0 --\cf5  if _keys have an alias, the original of the alias does not found.
+\f1 \cf0 \
+			
+\f0 --\cf5 log "error in search_value of XDict:" & msg
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 an_index
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 key_list\cf0 's
+\f1  
+\f0 \cf4 current_index\cf0 ()
+\f1 \
+			
+\f0 \cf4 key_list\cf0 's
+\f1  
+\f0 \cf4 delete_at\cf0 (\cf4 an_index\cf0 )
+\f1 \
+			
+\f0 \cf4 value_list\cf0 's
+\f1  
+\f0 \cf4 delete_at\cf0 (\cf4 an_index\cf0 )
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+		\
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 repeat
+\f1 \cf0 \
+	
+\f0 \cf2 try
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 a_value
+\f1 \cf0 \
+	
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0  
+\f0 \cf3 number
+\f1 \cf0  
+\f0 -2753
+\f1 \
+		
+\f0 \cf2 try
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 msg
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 "No value associated with "
+\f1  
+\f0 &
+\f1  
+\f0 (\cf4 a_value
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 Unicode text\cf0 )
+\f1 \
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 msg
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 "No value associated with a key value"
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+		
+\f0 \cf2 error
+\f1 \cf0  
+\f0 \cf4 msg
+\f1 \cf0  
+\f0 \cf3 number
+\f1 \cf0  
+\f0 900
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 search_value
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+\'83\'4c\'81\'5b\'92\'6c\'82\'c9\'91\'ce\'89\'9e\'82\'b5\'82\'bd\'92\'6c\'82\'f0\'8e\'e6\'93\'be\'82\'b5\'82\'dc\'82\'b7\'81\'42\'83\'4c\'81\'5b\'92\'6c\'82\'aa\'91\'b6\'8d\'dd\'82\'b5\'82\'c8\'82\'af\'82\'ea\'82\'ce\'81\'41error number 900 \'82\'aa\'94\'ad\'90\'b6\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Obtain a value associated with a specified key. If a key is not in a XDict, error number 900 will be rasied.\
+<!-- end locale -->\
+@param a_key (anything) : <!-- begin locale ja -->\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'82\'b5\'82\'c4\'90\'dd\'92\'e8\'82\'b5\'82\'bd\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\
+<!-- begin locale en -->a key to obtain its value<!-- end locale -->\
+\
+@result anything : \
+<!-- begin locale ja -->a_key \'82\'c9\'91\'ce\'89\'9e\'82\'b5\'82\'bd\'92\'6c\'82\'c6\'82\'b5\'82\'c4\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'bd\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\
+<!-- begin locale en -->an object associated with a_key<!-- end locale -->\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 value_for_key\cf0 (\cf4 a_key\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 search_value\cf0 (\cf4 a_key\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _values\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _key_comparator\cf0 )
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 value_for_key
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+\'92\'6c\'82\'c9\'91\'ce\'89\'9e\'82\'b5\'82\'bd\'83\'4c\'81\'5b\'92\'6c\'82\'f0\'8e\'e6\'93\'be\'82\'b5\'82\'dc\'82\'b7\'81\'42is \'89\'89\'8e\'5a\'8e\'71\'82\'c5\'93\'af\'92\'6c\'82\'c9\'82\'c8\'82\'e9\'92\'6c\'82\'aa\'91\'b6\'8d\'dd\'82\'b5\'82\'c8\'82\'af\'82\'ea\'82\'ce\'81\'41missing value \'82\'aa\'95\'d4\'82\'e8\'92\'6c\'82\'c9\'82\'c8\'82\'e8\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Obtain a key associating a value. If a same value using "is" operator is not found, missing value is returened.\
+<!-- end locale -->\
+@description\
+<!-- begin locale ja -->\
+\'93\'af\'82\'b6\'92\'6c\'82\'cd\'81\'41\'95\'4b\'82\'b8\'82\'b5\'82\'e0\'88\'ea\'82\'c2\'82\'c6\'82\'cd\'8c\'c0\'82\'e8\'82\'dc\'82\'b9\'82\'f1\'81\'42\'8d\'c5\'8f\'89\'82\'c9\'8c\'a9\'82\'c2\'82\'a9\'82\'c1\'82\'bd\'92\'6c\'82\'cc\'83\'4c\'81\'5b\'92\'6c\'82\'f0\'95\'d4\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+The values in XDict is not unique. A found value at the first will be returend.\
+<!-- end locale -->\
+@param a_key (anything) : \
+<!-- begin locale ja --> \'92\'6c\'82\'c6\'82\'b5\'82\'c4\'90\'dd\'92\'e8\'82\'b3\'82\'c4\'82\'a2\'82\'e9\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\
+<!-- begin locale en --> an object used as a value.<!-- end locale -->\
+@result\
+anything :<!-- begin locale ja --> a_value \'82\'cc\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'82\'b5\'82\'c4\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'bd\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\
+<!-- begin locale en --> an object used as a key.<!-- end locale -->\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 key_for_value\cf0 (\cf4 a_value\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 search_value\cf0 (\cf4 a_value\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _values\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _value_comparator\cf0 )
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 key_for_value
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+\'83\'4c\'81\'5b\'92\'6c\'82\'c9\'91\'ce\'89\'9e\'82\'b7\'82\'e9\'92\'6c\'82\'f0\'90\'dd\'92\'e8\'82\'b5\'82\'dc\'82\'b7\'81\'42\'83\'4c\'81\'5b\'92\'6c\'82\'aa\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'c8\'82\'af\'82\'ea\'82\'ce\'81\'41\'90\'56\'82\'b5\'82\'a2\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'82\'b5\'82\'c4\'92\'c7\'89\'c1\'82\'b3\'82\'ea\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Set a value associated with a key. If the key is not in the XDict, the key is added.\
+<!-- end locale -->\
+@param a_key (anything) : \
+<!-- begin locale ja -->\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'82\'c8\'82\'e9\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'81\'42is \'89\'89\'8e\'5a\'8e\'71\'82\'c5\'94\'e4\'8a\'72\'82\'c5\'82\'ab\'82\'e9\'95\'a8\'82\'c8\'82\'e7\'89\'bd\'82\'c5\'82\'e0\'89\'c2\'81\'42\
+<!-- begin locale en -->an object for a key, which must be able to compare with "is" operator.\
+<!-- end locale -->\
+@param a_value (anything) : \
+<!-- begin locale ja -->\'83\'4c\'81\'5b\'92\'6c\'82\'c9\'91\'ce\'89\'9e\'82\'b5\'82\'c4\'93\'6f\'98\'5e\'82\'b7\'82\'e9\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'81\'42\
+<!-- begin locale en -->an object to set associated with a key.\
+<!-- end locale -->\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 set_value\cf0 (\cf4 a_key\cf0 ,
+\f1  
+\f0 \cf4 a_value\cf0 )
+\f1 \
+	
+\f0 \cf2 try
+\f1 \cf0 \
+		
+\f0 \cf4 search_value\cf0 (\cf4 a_key\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _values\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _key_comparator\cf0 )
+\f1 \
+		
+\f0 \cf4 set_item
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 (\cf2 my
+\f1 \cf0  
+\f0 \cf4 _values\cf0 )
+\f1  
+\f0 \cf3 for
+\f1 \cf0  
+\f0 \cf4 a_value
+\f1 \cf0  
+\f0 \cf3 at
+\f1 \cf0  
+\f0 (\cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 current_index\cf0 ())
+\f1 \
+	
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0  
+\f0 \cf3 number
+\f1 \cf0  
+\f0 900
+\f1 \
+		
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 push\cf0 (\cf4 a_key\cf0 )
+\f1 \
+		
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _values\cf0 's
+\f1  
+\f0 \cf4 push\cf0 (\cf4 a_value\cf0 )
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 set_value
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+\'8e\'77\'92\'e8\'82\'b5\'82\'bd\'92\'6c\'82\'aa\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'82\'b5\'82\'c4\'91\'b6\'8d\'dd\'82\'b7\'82\'e9\'82\'a9\'92\'b2\'82\'d7\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Chack whether a passed value is icluded as a key value or not.\
+<!-- end locale -->\
+@param a_key (anything) :\
+<!-- begin locale ja -->\'83\'4c\'81\'5b\'92\'6c\
+<!-- begin locale en -->a key to check<!-- end locale -->\
+@result boolean : <!-- begin locale ja -->\'8e\'77\'92\'e8\'82\'b5\'82\'bd\'83\'4c\'81\'5b\'92\'6c\'82\'aa\'91\'b6\'8d\'dd\'82\'b5\'82\'bd\'82\'e7 true\
+<!-- begin locale en -->true if a value exists as a key value.<!-- end locale -->\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 has_key\cf0 (\cf4 a_key\cf0 )
+\f1 \
+	
+\f0 \cf2 try
+\f1 \cf0 \
+		
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf3 class
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf4 a_key
+\f1 \cf0  
+\f0 \cf2 is not
+\f1 \cf0  
+\f0 \cf2 in
+\f1 \cf0  
+\f0 \{\cf3 record
+\f1 \cf0  
+\f0 \cf2 or
+\f1 \cf0  
+\f0 \cf3 list\cf0 \}
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 has_item\cf0 (\cf4 a_key\cf0 )
+\f1 \
+		
+\f0 \cf2 else
+\f1 \cf0 \
+			
+\f0 \cf2 error
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0 \
+		
+\f0 \cf2 try
+\f1 \cf0 \
+			
+\f0 \cf4 search_value\cf0 (\cf4 a_key\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _values\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _key_comparator\cf0 )
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0  
+\f0 \cf3 number
+\f1 \cf0  
+\f0 900
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 false
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 has_key
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+\'8e\'77\'92\'e8\'82\'b5\'82\'bd\'83\'4c\'81\'5b\'92\'6c\'82\'a8\'82\'e6\'82\'d1\'81\'41\'82\'bb\'82\'ea\'82\'c9\'91\'ce\'89\'9e\'82\'b5\'82\'bd\'92\'6c\'82\'f0\'8d\'ed\'8f\'9c\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Remove a specified key and a associated value.\
+<!-- end locale -->\
+@param a_key (anything) :\
+<!-- begin locale ja -->\'8d\'ed\'8f\'9c\'82\'b5\'82\'bd\'82\'a2\'83\'4c\'81\'5b\'92\'6c\
+<!-- begin locale en -->a key to remove<!-- end locale -->\
+@result boolean : \
+<!-- begin locale ja -->\'8e\'77\'92\'e8\'82\'b5\'82\'bd\'83\'4c\'81\'5b\'92\'6c\'82\'aa\'91\'b6\'8d\'dd\'82\'b5\'82\'c4\'81\'41\'8d\'ed\'8f\'9c\'82\'c9\'90\'ac\'8c\'f7\'82\'b5\'82\'bd\'82\'e7 true\
+<!-- begin locale en -->true if removing a key and a value is succeeded.<!-- end locale -->\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 remove_for_key\cf0 (\cf4 a_key\cf0 )
+\f1 \
+	
+\f0 --\cf5 log "start removeItem"
+\f1 \cf0 \
+	
+\f0 \cf2 try
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 old_value
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 search_value\cf0 (\cf4 a_key\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _values\cf0 ,
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _key_comparator\cf0 )
+\f1 \
+	
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0  
+\f0 \cf3 number
+\f1 \cf0  
+\f0 900
+\f1 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 false
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+	\
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 an_index
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 current_index\cf0 ()
+\f1 \
+	
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 delete_at\cf0 (\cf4 an_index\cf0 )
+\f1 \
+	
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _values\cf0 's
+\f1  
+\f0 \cf4 delete_at\cf0 (\cf4 an_index\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 remove_for_key
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !@abstruct\
+<!-- begin locale ja -->\
+\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'92\'6c\'82\'cc\'83\'8a\'83\'58\'83\'67\'82\'f0\'95\'d4\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Obtain all keys as a list\
+<!-- end locale -->\
+@result list\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 all_keys\cf0 ()
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 all_items\cf0 ()
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 all_keys
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !@abstruct\
+<!-- begin locale ja -->\
+\'83\'4c\'81\'5b\'92\'6c\'82\'c9\'91\'ce\'89\'9e\'82\'b7\'82\'e9\'92\'6c\'82\'c6\'82\'b5\'82\'c4\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'95\'a8\'82\'cc\'83\'8a\'83\'58\'83\'67\'82\'f0\'95\'d4\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Obtain all values as a list\
+<!-- end locale -->\
+@result list\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 all_values\cf0 ()
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _values\cf0 's
+\f1  
+\f0 \cf4 all_items\cf0 ()
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 all_values
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !@abstruct\
+<!-- begin locale ja -->\
+\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'83\'4c\'81\'5b\'92\'6c\'82\'cc\'90\'94\'82\'f0\'95\'d4\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Obtain all keys as a list\
+<!-- end locale -->\
+@result list\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 count_keys\cf0 ()
+\f1 \
+	
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 count
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 result
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 count_keys
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9 \'83\'4c\'81\'5b\'92\'6c\'82\'c6\'92\'6c\'82\'f0\'82\'b7\'82\'d7\'82\'c4\'8f\'c1\'8b\'8e\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Remove all keys and values\
+<!-- end locale -->\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 forget\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _values
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0  
+\f0 \cf4 XList
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0  
+\f0 \cf4 XList
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 forget
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !@group Setting and Getting Comparators \cf0 *)
+\f1 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+key comparator \'82\'f0\'90\'dd\'92\'e8\'82\'b5\'82\'dc\'82\'b7\'81\'42key comparator \'82\'cd\'81\'41\'83\'4c\'81\'5b\'92\'6c\'82\'f0\'94\'e4\'8a\'72\'82\'b7\'82\'e9\'8e\'9e\'82\'c9\'97\'70\'82\'a2\'82\'e7\'82\'ea\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Set a key comparator script to the instance.\
+<!-- end locale -->\
+@description\
+<!-- begin locale ja -->\
+key comparator script \'82\'cd\'88\'c8\'89\'ba\'82\'cc\'8e\'64\'97\'6c\'82\'f0\'96\'9e\'82\'bd\'82\'b5\'82\'c4\'82\'a2\'82\'e9\'95\'4b\'97\'76\'82\'aa\'82\'a0\'82\'e8\'82\'dc\'82\'b7\'81\'42\
+* \'93\'f1\'82\'c2\'82\'cc positional parameter \'82\'f0\'8e\'9d\'82\'c2 do handler \'82\'f0\'8e\'c0\'91\'95\'82\'b5\'82\'c4\'82\'a2\'82\'e9\'81\'42\
+* do handler \'82\'cd\'93\'f1\'82\'c2\'82\'cc\'88\'f8\'90\'94\'82\'aa\'93\'af\'92\'6c\'82\'cc\'8e\'9e\'82\'c9 true \'82\'f0\'95\'d4\'82\'b7\'81\'42\'82\'bb\'82\'ea\'88\'c8\'8a\'4f\'82\'cc\'8f\'ea\'8d\'87\'82\'cd false \'82\'f0\'95\'d4\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+A key comparator script must have following specification.\
+* do handler which have two positional parameters.\
+* do handler return true if two argumetns are identical, otherwise return false.\
+<!-- end locale -->\
+@param a_script (script object)\
+@result script object : me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 set_key_comparator\cf0 (\cf4 a_script\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _key_comparator
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 a_script
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 set_key_comparator
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+value comparator \'82\'f0\'90\'dd\'92\'e8\'82\'b5\'82\'dc\'82\'b7\'81\'42value comparator \'82\'cd\'81\'41\'92\'6c\'82\'f0\'94\'e4\'8a\'72\'82\'b7\'82\'e9\'8e\'9e\'82\'c9\'97\'70\'82\'a2\'82\'e7\'82\'ea\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Set a value comparator script to the instance.\
+<!-- end locale -->\
+@description\
+<!-- begin locale ja -->\
+value comparator script \'82\'cd\'88\'c8\'89\'ba\'82\'cc\'8e\'64\'97\'6c\'82\'f0\'96\'9e\'82\'bd\'82\'b5\'82\'c4\'82\'a2\'82\'e9\'95\'4b\'97\'76\'82\'aa\'82\'a0\'82\'e8\'82\'dc\'82\'b7\'81\'42\
+* \'93\'f1\'82\'c2\'82\'cc positional parameter \'82\'f0\'8e\'9d\'82\'c2 do handler \'82\'f0\'8e\'c0\'91\'95\'82\'b5\'82\'c4\'82\'a2\'82\'e9\'81\'42\
+* do handler \'82\'cd\'93\'f1\'82\'c2\'82\'cc\'88\'f8\'90\'94\'82\'aa\'93\'af\'92\'6c\'82\'cc\'8e\'9e\'82\'c9 true \'82\'f0\'95\'d4\'82\'b7\'81\'42\'82\'bb\'82\'ea\'88\'c8\'8a\'4f\'82\'cc\'8f\'ea\'8d\'87\'82\'cd false \'82\'f0\'95\'d4\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+A key comparator script must have following specification.\
+* do handler which have two positional parameters.\
+* do handler return true if two argumetns are identical, otherwise return false.\
+<!-- end locale -->\
+@param a_script (script object)\
+@result script object : me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 set_value_comparator\cf0 (\cf4 a_script\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _value_comparator
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 a_script
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 set_value_comparator
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !@abstruct\
+<!-- begin locale ja -->\
+\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9 key comparator \'82\'f0\'8e\'e6\'93\'be\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Obrain the key comprator of the XDict instance.\
+<!-- end locale -->\
+@result script object\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 key_comparator\cf0 ()
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _key_comparator
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 key_comparator
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !@abstruct\
+<!-- begin locale ja -->\
+\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9 value comparator \'82\'f0\'8e\'e6\'93\'be\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Obrain the value comprator of the XDict instance.\
+<!-- end locale -->\
+@result script object\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 value_comparator\cf0 ()
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _value_comparator
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 value_comparator
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !@group Obtain Iterator Object\cf0 *)
+\f1 \
+\
+
+\f0 (*\cf5 !@abstruct\
+<!-- begin locale ja -->\
+XDict \'82\'cc\'83\'43\'83\'65\'83\'8c\'81\'5b\'83\'5e\'82\'f0\'8e\'e6\'93\'be\'82\'b5\'82\'dc\'82\'b7\'81\'42 \'83\'43\'83\'65\'83\'8c\'81\'5b\'83\'5e\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'cd ((<next>))() \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'c5\'83\'4c\'81\'5b\'82\'c6\'92\'6c\'82\'cc\'83\'79\'83\'41\'83\'8a\'83\'58\'83\'67 \{a_key, a_value\} \'82\'f0\'95\'d4\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+Make an iterator object of XDict. The iterator object return a pair list of key and a value i.e. \{a_key, a_value\} with ((<next>))() handler.\
+<!-- end locale -->\
+@result script object : An iterator\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 iterator\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 a_dict
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 key_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 XList\cf0 's
+\f1  
+\f0 \cf4 make_with\cf0 (\cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 list_ref\cf0 ())
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 value_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf4 _values
+\f1 \cf0 \
+	
+\f0 (*\cf5 !@group Methods of Iterator Object\cf0 *)
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf4 XDictIterator
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf4 _values
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf4 value_list
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf4 _keys
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf4 key_list
+\f1 \cf0 \
+		\
+		
+\f0 (*\cf5 !@abstruct\
+		<!-- begin locale ja -->\'8e\'9f\'82\'cc\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'8e\'e6\'93\'be\'82\'c5\'82\'ab\'82\'e9\'82\'a9\'82\'c7\'82\'a4\'82\'a9\'92\'b2\'82\'d7\'82\'dc\'82\'b7\'81\'42\
+		<!-- begin locale en -->Check whether next object can be obtained or not.\
+		<!-- end locale -->\
+		@result boolean\
+		\cf0 *)
+\f1 \
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 has_next\cf0 ()
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 has_next\cf0 ()
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 has_next
+\f1 \cf0 \
+		\
+		
+\f0 (*\cf5 !@abstruct\
+		<!-- begin locale ja -->\
+		\'8e\'9f\'82\'cc\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'91\'ce\'89\'9e\'82\'b5\'82\'bd\'92\'6c\'82\'f0\'8e\'e6\'93\'be\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+		<!-- begin locale en -->\
+		Obtain a next pair of a key and its value.\
+		<!-- end locale -->\
+		@description\
+		<!--begin locale ja-->\
+		\'8e\'9f\'82\'cc\'83\'4c\'81\'5b\'92\'6c\'82\'aa\'8e\'e6\'93\'be\'82\'c5\'82\'ab\'82\'c8\'82\'a2\'8f\'ea\'8d\'87\'82\'cd\'81\'41error number 900 \'82\'aa\'94\'ad\'90\'b6\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+		<!-- begin locale en -->\
+		If it is fail to obtain next key value, error number 900 will be raised.\
+		<!--end locale-->\
+		@result list : \{ a_key, a_value\}\
+		\cf0 *)
+\f1 \
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 next\cf0 ()
+\f1 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 a_key
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 next\cf0 ()
+\f1 \
+			
+\f0 (*\cf5 \
+			if a_key is missing value then\
+				return \{missing value, missing value\}\
+			end if\
+			\cf0 *)
+\f1 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 a_value
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 _values\cf0 's
+\f1  
+\f0 \cf4 item_at\cf0 (\cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 current_index\cf0 ())
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \{\cf4 a_key\cf0 ,
+\f1  
+\f0 \cf4 a_value\cf0 \}
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 next
+\f1 \cf0 \
+		\
+		
+\f0 (*\cf5 !@abstruct\
+		<!-- begin locale ja -->\
+		((<next>))() \'82\'c5\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'92\'6c\'82\'cc\'83\'79\'83\'41\'82\'f0\'8d\'c5\'8f\'89\'82\'c9\'96\'df\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+		<!-- begin locale en -->\
+		Make a pair of a key and a value retuned by ((<next>))() revert to first one.\
+		<!-- end locale -->\
+		\cf0 *)
+\f1 \
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 reset\cf0 ()
+\f1 \
+			
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 reset\cf0 ()
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 reset
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 iterator
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !@group Loop with Script Object \cf0 *)
+\f1 \
+\
+
+\f0 (*\cf5 !\
+@abstruct\
+<!--begin locale ja-->\
+\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'92\'6c\'82\'cc\'83\'79\'83\'41\'83\'8a\'83\'58\'83\'67\'82\'cc\'82\'f0\'88\'f8\'90\'94\'82\'c9\'82\'b5\'82\'c4\'83\'58\'83\'4e\'83\'8a\'83\'76\'83\'67\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'cc do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'f0\'8c\'4a\'82\'e8\'95\'d4\'82\'b5\'8e\'c0\'8d\'73\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!--begin locale en-->\
+Perform do handler of given script object with passing pair lists of each key and value as a argument.\
+<!--end locale-->\
+@description \
+<!--begin locale ja-->\
+a_script \'82\'cd\'88\'f8\'90\'94\'82\'f0\'88\'ea\'82\'c2\'82\'be\'82\'af\'82\'c6\'82\'e9 do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'f0\'8e\'c0\'91\'95\'82\'b5\'82\'c4\'82\'a2\'82\'c8\'82\'af\'82\'ea\'82\'ce\'82\'c8\'82\'e8\'82\'dc\'82\'b9\'82\'f1\'81\'42do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'cc\'95\'d4\'82\'e8\'92\'6c\'82\'cd true \'82\'e0\'82\'b5\'82\'ad\'82\'cd false \'82\'c5\'82\'a0\'82\'e9\'95\'4b\'97\'76\'82\'aa\'82\'a0\'82\'e8\'82\'dc\'82\'b7\'81\'42do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'aa false \'82\'f0 \'95\'d4\'82\'b7\'82\'c6\'8f\'88\'97\'9d\'82\'f0\'92\'86\'8e\'7e\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+\
+<!--begin locale en-->\
+a_script must have a do handler which require only argument. The do handler must return true or false.\
+\
+When the do handler return false, the process is stoped immediately.\
+<!--end locale-->\
+@param\
+<!--begin locale ja-->\
+a_script(\'83\'58\'83\'4e\'83\'8a\'83\'76\'83\'67\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67) : \'88\'f8\'90\'94\'82\'f0\'88\'ea\'82\'c2\'82\'be\'82\'af\'82\'c6\'82\'e9 do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'f0\'8e\'9d\'82\'c1\'82\'c4\'82\'a2\'82\'e9\'95\'4b\'97\'76\'82\'aa\'82\'a0\'82\'e8\'82\'dc\'82\'b7\'81\'42 do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'cd\'90\'5e\'8b\'55\'92\'6c\'82\'f0\'95\'d4\'82\'b3\'82\'c8\'82\'ad\'82\'c4\'82\'cd\'82\'c8\'82\'e8\'82\'dc\'82\'b9\'82\'f1\'81\'42\
+<!--begin locale en-->\
+a_script(script object) : must have a do handler which require only argument. The do handler must return boolean.\
+<!--end locale-->\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 each\cf0 (\cf4 a_script\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 an_iterator
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 iterator\cf0 ()
+\f1 \
+	
+\f0 \cf2 repeat
+\f1 \cf0  
+\f0 \cf2 while
+\f1 \cf0  
+\f0 \cf4 an_iterator\cf0 's
+\f1  
+\f0 \cf4 has_next\cf0 ()
+\f1 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 a_pair
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 an_iterator\cf0 's
+\f1  
+\f0 \cf4 next\cf0 ()
+\f1 \
+		
+\f0 \cf2 if
+\f1 \cf0  
+\f0 (\cf4 a_script\cf0 's
+\f1  
+\f0 \cf4 do\cf0 (\cf4 a_pair\cf0 )
+\f1  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 false\cf0 )
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+			
+\f0 \cf2 exit
+\f1 \cf0  
+\f0 \cf2 repeat
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 repeat
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 each
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct \
+<!--begin locale ja-->\
+\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'92\'6c\'82\'cc\'83\'79\'83\'41\'83\'8a\'83\'58\'83\'67\'82\'cc\'82\'f0\'88\'f8\'90\'94\'82\'c9\'82\'b5\'82\'c4\'83\'58\'83\'4e\'83\'8a\'83\'76\'83\'67\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'cc do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'f0\'8c\'4a\'82\'e8\'95\'d4\'82\'b5\'8e\'c0\'8d\'73\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'cc\'95\'d4\'82\'e8\'92\'6c\'82\'f0\'97\'76\'91\'66\'82\'c6\'82\'b5\'82\'bd ((<XList>)) \'82\'aa\'8c\'8b\'89\'ca\'82\'c9\'82\'c8\'82\'e8\'82\'dc\'82\'b7\'81\'42\
+<!--begin locale en-->\
+Perform do handler of given script object with passing pair lists of each key and value as a argument.\'81\'40A ((<XList>)) consisting of the results of do handler is returned.\
+<!--end locale-->\
+@description \
+<!--begin locale ja-->\
+a_script \'82\'cd\'88\'f8\'90\'94\'82\'f0\'88\'ea\'82\'c2\'82\'be\'82\'af\'82\'c6\'82\'e9 do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'f0\'8e\'c0\'91\'95\'82\'b5\'82\'c4\'82\'a2\'82\'c8\'82\'af\'82\'ea\'82\'ce\'82\'c8\'82\'e8\'82\'dc\'82\'b9\'82\'f1\'81\'42\
+<!--begin locale en-->\
+a_script must have a\'81\'40do handler which require only argument.\
+<!--end locale-->\
+@param a_script(script object) :\
+<!--begin locale ja--> \'88\'f8\'90\'94\'82\'f0\'88\'ea\'82\'c2\'82\'be\'82\'af\'82\'c6\'82\'e9 do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'f0\'8e\'9d\'82\'c1\'82\'c4\'82\'a2\'82\'e9\'95\'4b\'97\'76\'82\'aa\'82\'a0\'82\'e8\'82\'dc\'82\'b7\'81\'42\
+<!--begin locale en--> must have a do handler which require only argument.\
+<!--end locale-->\
+@result script object : a XList instance\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 map\cf0 (\cf4 a_script\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 out_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 map_as_list\cf0 (\cf4 a_script\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 XList\cf0 's
+\f1  
+\f0 \cf4 make_with\cf0 (\cf4 out_list\cf0 )
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 map
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 !\
+@abstruct \
+<!--begin locale ja-->\
+((<map>)) \'82\'c6\'82\'d9\'82\'da\'93\'af\'82\'b6\'82\'c5\'82\'b7\'82\'aa\'81\'41\'95\'d4\'82\'e8\'92\'6c\'82\'aa AppleScript \'82\'cc\'83\'8a\'83\'58\'83\'67\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'c9\'82\'c8\'82\'e8\'82\'dc\'82\'b7\'81\'42\
+<!--begin locale en-->\
+Almost same to ((<map>)), but a result of this method is AppleScript's list.\
+<!--end locale-->\
+@description \
+<!--begin locale ja-->\
+\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'92\'6c\'82\'cc\'83\'79\'83\'41\'83\'8a\'83\'58\'83\'67\'82\'cc\'82\'f0\'88\'f8\'90\'94\'82\'c9\'82\'b5\'82\'c4\'83\'58\'83\'4e\'83\'8a\'83\'76\'83\'67\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'cc do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'f0\'8c\'4a\'82\'e8\'95\'d4\'82\'b5\'8e\'c0\'8d\'73\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'cc\'95\'d4\'82\'e8\'92\'6c\'82\'f0\'97\'76\'91\'66\'82\'c6\'82\'b5\'82\'bd list \'82\'aa\'8c\'8b\'89\'ca\'82\'c9\'82\'c8\'82\'e8\'82\'dc\'82\'b7\'81\'42\
+\
+a_script \'82\'cd\'88\'f8\'90\'94\'82\'f0\'88\'ea\'82\'c2\'82\'be\'82\'af\'82\'c6\'82\'e9 do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'f0\'8e\'c0\'91\'95\'82\'b5\'82\'c4\'82\'a2\'82\'c8\'82\'af\'82\'ea\'82\'ce\'82\'c8\'82\'e8\'82\'dc\'82\'b9\'82\'f1\'81\'42\
+<!--begin locale en-->\
+Perform do handler of given script object with passing pair lists of each key and value as a argument.\'81\'40A list consisting of the results of do handler is returned.\
+\
+a_script must have a\'81\'40do handler which require only argument.\
+<!--end locale-->\
+@param a_script(script object) :\
+<!--begin locale ja--> \'88\'f8\'90\'94\'82\'f0\'88\'ea\'82\'c2\'82\'be\'82\'af\'82\'c6\'82\'e9 do \'83\'6e\'83\'93\'83\'68\'83\'89\'82\'f0\'8e\'9d\'82\'c1\'82\'c4\'82\'a2\'82\'e9\'95\'4b\'97\'76\'82\'aa\'82\'a0\'82\'e8\'82\'dc\'82\'b7\'81\'42\
+<!--begin locale en--> must have a do handler which require only argument.\
+<!--end locale-->\
+@result list\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 map_as_list\cf0 (\cf4 a_script\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 out_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \{\}
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 an_iterator
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 iterator\cf0 ()
+\f1 \
+	
+\f0 \cf2 repeat
+\f1 \cf0  
+\f0 \cf2 while
+\f1 \cf0  
+\f0 \cf4 an_iterator\cf0 's
+\f1  
+\f0 \cf4 has_next\cf0 ()
+\f1 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 a_pair
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 an_iterator\cf0 's
+\f1  
+\f0 \cf4 next\cf0 ()
+\f1 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf4 out_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 a_script\cf0 's
+\f1  
+\f0 \cf4 do\cf0 (\cf4 a_pair\cf0 )
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 repeat
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 out_list
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 map_as_list
+\f1 \cf0 \
+\
+\
+
+\f0 (*\cf5 !@group Debugging \cf0 *)
+\f1 \
+
+\f0 (*\cf5 !\
+@abstruct\
+<!-- begin locale ja -->\
+\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'91\'ce\'89\'9e\'82\'b7\'82\'e9\'92\'6c\'82\'cc\'88\'ea\'97\'97\'82\'f0\'95\'b6\'8e\'9a\'97\'f1\'82\'c6\'82\'b5\'82\'c4\'95\'d4\'82\'b5\'82\'dc\'82\'b7\'81\'42\'83\'66\'83\'6f\'83\'62\'83\'4e\'97\'70\'82\'c9\'8e\'67\'82\'c1\'82\'c4\'89\'ba\'82\'b3\'82\'a2\'81\'42\
+<!-- begin locale en -->\
+Dump keys and values in XDict as text. Use this method for debugging.\
+<!-- end locale -->\
+@description\
+<!-- begin locale ja -->\
+\'83\'4c\'81\'5b\'92\'6c\'82\'e0\'82\'b5\'82\'ad\'82\'cd\'82\'bb\'82\'ea\'82\'c9\'91\'ce\'89\'9e\'82\'b7\'82\'e9\'92\'6c\'82\'c9\'95\'b6\'8e\'9a\'97\'f1\'82\'c9\'95\'cf\'8a\'b7\'82\'c5\'82\'ab\'82\'c8\'82\'a2\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'aa\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'82\'c6\'83\'47\'83\'89\'81\'5b\'82\'aa\'94\'ad\'90\'b6\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+If objects which can be coerce to string, error raise.\
+<!-- end locale -->\
+\
+@result\
+string\
+\
+  "key1 -> Value1 \
+    key2 -> Value2\
+    ......."\
+ \
+ <!-- begin locale ja -->\
+\'82\'c6\'82\'a2\'82\'a4\'83\'74\'83\'48\'81\'5b\'83\'7d\'83\'62\'83\'67\'82\'c5\'83\'4c\'81\'5b\'92\'6c\'82\'c6\'91\'ce\'89\'9e\'82\'b7\'82\'e9\'92\'6c\'82\'cc\'88\'ea\'97\'97\'82\'f0\'95\'b6\'8e\'9a\'97\'f1\'82\'c9\'82\'b3\'82\'ea\'82\'bd\'95\'a8\'82\'aa\'95\'d4\'82\'b3\'82\'ea\'82\'dc\'82\'b7\'81\'42\
+<!-- begin locale en -->\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 dump\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 a_text
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 ""
+\f1 \
+	
+\f0 \cf2 repeat
+\f1 \cf0  
+\f0 \cf2 with
+\f1 \cf0  
+\f0 \cf4 n
+\f1 \cf0  
+\f0 \cf2 from
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 (\cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 item_counts\cf0 ())
+\f1 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 a_text
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 a_text
+\f1 \cf0  
+\f0 &
+\f1  
+\f0 (\cf2 my
+\f1 \cf0  
+\f0 \cf4 _keys\cf0 's
+\f1  
+\f0 \cf4 item_at\cf0 (\cf4 n\cf0 ))
+\f1  
+\f0 &
+\f1  
+\f0 \cf3 tab
+\f1 \cf0  
+\f0 &
+\f1  
+\f0 "->"
+\f1  
+\f0 &
+\f1  
+\f0 \cf3 tab
+\f1 \cf0  
+\f0 &
+\f1  
+\f0 (\cf2 my
+\f1 \cf0  
+\f0 \cf4 _values\cf0 's
+\f1  
+\f0 \cf4 item_at\cf0 (\cf4 n\cf0 ))
+\f1  
+\f0 &
+\f1  
+\f0 \cf3 return
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 repeat
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf4 a_text
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 dump
+\f1 \cf0 \
+\
+
+\f0 (*\cf5 * private *\cf0 *)
+\f1 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf4 debug\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf4 a_dict
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf4 make_with_lists\cf0 (\{"key1",
+\f1  
+\f0 "key2"\},
+\f1  
+\f0 \{"value1",
+\f1  
+\f0 "value2"\})
+\f1 \
+	
+\f0 --\cf5 a_dict's remove_for_key("key1")
+\f1 \cf0 \
+	
+\f0 \cf3 log
+\f1 \cf0  
+\f0 \cf4 a_dict\cf0 's
+\f1  
+\f0 \cf4 dump\cf0 ()
+\f1 \
+	
+\f0 \cf4 a_dict
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf4 debug
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+	
+\f0 --\cf5 return debug()
+\f1 \cf0 \
+	
+\f0 \cf3 show helpbook
+\f1 \cf0  
+\f0 (\cf3 path to
+\f1 \cf0  
+\f0 \cf2 me\cf0 )
+\f1  
+\f0 \cf2 with
+\f1 \cf0  
+\f0 \cf3 recovering InfoPlist
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+}
