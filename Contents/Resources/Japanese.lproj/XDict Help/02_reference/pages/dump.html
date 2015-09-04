@@ -16,11 +16,13 @@
 
 	<body>
 		<div id="navi-bar">
+			<div class="edit-script-link">
+			<a onclick="return runHelpScriptWithBundleRoot(this)" href="../assets/editScript.scpt">Edit Script</a>
+			</div>
+			<div class="left-contents">
 			<div class="to-root">
 			<a href="../index.html">XDict Reference </a>
 			</div>
-			<div class="edit-script-link">
-			<a onclick="return runHelpScript(this)" href="../assets/editScript.scpt">Edit Script</a>
 			</div>
 		</div>
 		<div id="contents">
@@ -46,7 +48,6 @@ Result
   "key1 -> Value1 
     key2 -> Value2
     ......."
- 
  
 </pre>
 <p>というフォーマットでキー値と対応する値の一覧を文字列にされた物が返されます。</p>
